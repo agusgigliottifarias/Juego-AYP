@@ -26,9 +26,9 @@ int cant_letras () { // función para analisar la cantidad de letras de la palab
 
 }
 
-int intentos () { // función para los intentos restantes
+int intentos  // variable para los intentos restantes
 
-}
+
 
 int munieco () { // función para el muñeco, ACLARACION no es importante
 
