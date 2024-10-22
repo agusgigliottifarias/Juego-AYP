@@ -25,42 +25,12 @@ int main () {
    
    
 
-    /*FILE *archivo = fopen("comida.txt", "r");
-    if (archivo == NULL) {
-    printf("No se pudo abrir el archivo\n");
-    return 1;
-    }*/
-    //char c;
+    
     char palabras[MAX_PALABRAS][MAX_LONGITUD]; 
 
     int contador = 0;
 
-     // Leer el contenido del archivo carácter por carácter y mostrarlo en pantalla
-    /*while ((c = fgetc(archivo)) != EOF) {
-        printf("%c", c);
-    }*/
-   /*//elije una palabra sola que en este caso es la primera 
-   if (fgets(palabra, sizeof(palabra), archivo) != NULL) {
-        // Eliminar el salto de línea
-        palabra[strcspn(palabra, "\n")] = 0;
-        
-        // Imprimir la palabra guardada
-        printf("Palabra guardada: %s\n", palabra);
-    } else {
-        printf("El archivo está vacío\n");
-    }*/
- 
-   // lee el arreglo y lo guarda en un arreglo 
-    /*while (fgets(palabras[contador], sizeof(palabras[contador]), archivo) != NULL) {
-        // Eliminar el salto de línea
-        palabras[contador][strcspn(palabras[contador], "\n")] = 0;
-        contador++;
-        if (contador >= MAX_PALABRAS) break; // Limitar el número de palabras
-    }
-
-    
-
-    fclose(archivo);*/
+     
    
     int dificultad, temática;
 
