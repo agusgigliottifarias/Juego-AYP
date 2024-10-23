@@ -106,7 +106,7 @@ int main () {
         break;
 
     default:
-        printf("Recurede es  1 facil 2 medio 3 dificil.");
+        printf("Recuerde es  1 facil, 2 medio, 3 dificil.");
         break;
     }
 
