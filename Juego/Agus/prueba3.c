@@ -14,6 +14,7 @@ void reglasDeJuego(void){
     scanf("%s",&name);
     printf("Bienvenido %s al ahorcado\n",name);
     printf("\n");
+    printf ("Las reglas son simples, debe adivinar la palabra dentro del limite de intentos. Buena suerte... la va a necesitar \n");
     printf("Presione enter para continuar");
     while (getchar() != '\n');
     getchar();
