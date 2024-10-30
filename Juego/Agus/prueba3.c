@@ -27,7 +27,7 @@ void eleccionDificultad (FILE *archivo,char palabras1[MAX_PALABRAS][MAX_LONGITUD
         }
         
         srand(time(NULL));
-        int random1 = rand() % MAX_PALABRAS; 
+        int random1 = rand() % (MAX_PALABRAS+1); 
         int contador1 = 0;
         
         while (fgets(palabras1[contador1], sizeof(palabras1[contador1]), archivo) != NULL) {
@@ -55,7 +55,7 @@ int main () {
     int contador = 0;
 
     int dificultad, temática;
-    printf("ingrese la temática que desea jugar = paises(1) marcas(2) comidas (3) objetos (4) ");
+    printf("ingrese la temática que desea jugar = paises(1) marcas(2) objetos (3) ");
     scanf("%d",&temática);
     printf("ingrese la dificualtad =     facil(1)   medio(2)     hardcore(3) ");
     scanf("%d",&dificultad);
@@ -98,23 +98,6 @@ int main () {
         break;
 
     case 3:  // Caso de comidas
-        switch (dificultad) {
-            case 1:
-                archivo = fopen("tematicas/comida/comidafacil.txt", "r");
-                break;
-            case 2:
-                archivo = fopen("tematicas/comida/comidamedio.txt", "r");
-                break;
-            case 3:
-                archivo = fopen("tematicas/comida/comidahardcore.txt", "r");
-                break;
-            default:
-                printf("Recuerde que 1 es fácil, 2 es medio, 3 es difícil.\n");
-                break;
-        }
-        break;
-
-    case 4:  // Caso de objetos
         switch (dificultad) {
             case 1:
                 archivo = fopen("tematicas/objetos/objetosfacil.txt", "r");
