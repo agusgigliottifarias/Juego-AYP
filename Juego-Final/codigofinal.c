@@ -4,113 +4,163 @@
 #include <stdlib.h>
 
 
-#define MAX_PALABRAS 10
+#define MAX_PALABRAS 20
 #define MAX_LONGITUD 50
 
-int main () {
+//función jugador y reglas de juego
+void reglasDeJuego(void){
+    char name[100];
+    printf("Ingrese su nombre: ",name);
+    scanf("%s",&name);
+    printf("Bienvenido %s al ahorcado\n",name);
+    printf("\n");
+    printf ("Las reglas son simples, debe adivinar la palabra dentro del limite de intentos. Buena suerte.  \n");
+    printf("Presione enter para continuar");
+    while (getchar() != '\n');
+    getchar();
+};
 
-    printf(" --------------------------------------------------------------------\n");
-    printf("|                                                                    |\n");
-    printf("|                                                                    |\n");
-    printf("|                                                                    |\n");
-    printf("|                                                                    |\n");
-    printf("|                                                                    |\n");
-    printf("|                                                                    |\n");
-    printf("|                                                                    |\n");
-    printf("|                                                                    |\n");
-    printf("|                                                                    |\n");
-    printf("|                                                                    |\n");
-    printf(" --------------------------------------------------------------------\n");
-
-   
-   
-
-    
-    char palabras[MAX_PALABRAS][MAX_LONGITUD]; 
-
-    int contador = 0;
-
-     
-   
-    int dificultad, temática;
-
-    printf("ingrese la dificualtad =     facil(1)   medio(2)     hardcore(3)");
-    scanf("%d",&dificultad);
-
-    switch (dificultad)
-    {
-    case 1:
-        FILE *archivo1 = fopen("comidafacil.txt", "r");
-        if (archivo1 == NULL) {
+//función para elección palabra
+void eleccionDificultad (FILE *archivo,char palabras1[MAX_PALABRAS][MAX_LONGITUD],char palabraEnJuego[MAX_LONGITUD]){
+    if (archivo == NULL) {
             printf("No se pudo abrir el archivo\n");
-        return 1;
+        return;
         }
-        char palabras1[MAX_PALABRAS][MAX_LONGITUD]; 
+        
         srand(time(NULL));
-        int random1 = rand() % MAX_PALABRAS; 
+        int random1 = rand() % (MAX_PALABRAS+1); 
         int contador1 = 0;
         
-        while (fgets(palabras1[contador1], sizeof(palabras1[contador1]), archivo1) != NULL) {
+        while (fgets(palabras1[contador1], sizeof(palabras1[contador1]), archivo) != NULL) {
             
             palabras1[contador1][strcspn(palabras1[contador1], "\n")] = 0;
             contador1++;
-            if (contador1 >= MAX_PALABRAS) break; // Limitar el número de palabras
+            if (contador1 >= MAX_PALABRAS){
+            fclose(archivo);
+            break; 
+            }
         }
         printf("%s",palabras1[random1]);
-        fclose(archivo1);
+        fclose(archivo);
+       
+        strcpy(palabraEnJuego, palabras1[random1]);
+}
+
+
+int main () {
+
+    reglasDeJuego();
+
+    char palabras[MAX_PALABRAS][MAX_LONGITUD],palabraEnJuego[MAX_LONGITUD];
+
+    int contador = 0;
+   
+   
+    printf ("_________________________________________________________________________________________ \n");
+    printf ("|    ____      _                                                          _              | \n");
+    printf ("|   / __ \\    | |        ____     _   ___    _____     _____  __         | |     ____    | \n");
+    printf ("|  / /  \\ \\   | |       / __ \\   | | / __|  / ___ \\   /  __ `/ /         | |    / __ \\   | \n");
+    printf ("| / /____\\ \\  | |___   / /  \\ \\  | |/ /    / /   \\_\\  | /  \\  |    _____ | |   / /  \\ \\  | \n");
+    printf ("| |  ____  |  |  __ \\  | |  | |  |   /     | |        | |  |  |   /  _  \\' |   | |  | |  | \n");
+    printf ("| | /    \\ |  | |  \\ \\ | |  | |  |  /      | |    _   | |  |  |   | / \\    |   | |  | |  | \n");
+    printf ("| | |    | |  | |  | | \\ \\__/ /  | |       \\ \\___/ /  | \\__/  |   | \\_/    |   \\ \\__/ /  | \n");
+    printf ("| |_|    |_|  |_|  |_|  \\____/   |_|        \\_____/   \\_____,\\_\\  \\____/\\_/     \\____/   | \n");
+    printf ("|________________________________________________________________________________________| \n");
+   
+   
+    int dificultad, temática;
+    printf("ingrese la temática que desea jugar = paises(1) marcas(2) objetos (3) ");
+    scanf("%d",&temática);
+    printf("ingrese la dificualtad =     facil(1)   medio(2)     hardcore(3) ");
+    scanf("%d",&dificultad);
+
+    FILE *archivo = NULL;
+
+    switch (temática) {
+    case 1:  // Caso de países
+        switch (dificultad) {
+            case 1:
+                archivo = fopen("tematicas/paises/paisesfacil.txt", "r");
+                break;
+            case 2:
+                archivo = fopen("tematicas/paises/paisesmedio.txt", "r");
+                break;
+            case 3:
+                archivo = fopen("tematicas/paises/paiseshardcore.txt", "r");
+                break;
+            default:
+                printf("Recuerde que 1 es fácil, 2 es medio, 3 es difícil.\n");
+                break;
+        }
         break;
 
-
-    case 2:
-        FILE *archivo2 = fopen("comidamedio.txt", "r");
-        if (archivo2 == NULL) {
-            printf("No se pudo abrir el archivo\n");
-        return 1;
+    case 2:  // Caso de marcas
+        switch (dificultad) {
+            case 1:
+                archivo = fopen("tematicas/marcas/marcafacil.txt", "r");
+                break;
+            case 2:
+                archivo = fopen("tematicas/marcas/marcamedio.txt", "r");
+                break;
+            case 3:
+                archivo = fopen("tematicas/marcas/marcahardcore.txt", "r");
+                break;
+            default:
+                printf("Recuerde que 1 es fácil, 2 es medio, 3 es difícil.\n");
+                break;
         }
+        break;
 
-        char palabras2[MAX_PALABRAS][MAX_LONGITUD]; 
-        srand(time(NULL));
-        int random2 = rand() % MAX_PALABRAS; 
-        int contador2 = 0;
-        // lee el arreglo y lo guarda en un arreglo 
-        while (fgets(palabras2[contador2], sizeof(palabras2[contador2]), archivo2) != NULL) {
-        // Eliminar el salto de línea
-        palabras2[contador2][strcspn(palabras2[contador2], "\n")] = 0;
-        contador2++;
-        if (contador2 >= MAX_PALABRAS) break; // Limitar el número de palabras
+    case 3:  // Caso de comidas
+        switch (dificultad) {
+            case 1:
+                archivo = fopen("tematicas/objetos/objetosfacil.txt", "r");
+                break;
+            case 2:
+                archivo = fopen("tematicas/objetos/objetosmedio.txt", "r");
+                break;
+            case 3:
+                archivo = fopen("tematicas/objetos/objetoshardcore.txt", "r");
+                break;
+            default:
+                printf("Recuerde que 1 es fácil, 2 es medio, 3 es difícil.\n");
+                break;
         }
-        printf("%s",palabras2[random2]);
-        fclose(archivo2);
-        break;    
-    case 3:
-        FILE *archivo3 = fopen("comidadificil.txt", "r");
-        if (archivo3 == NULL) {
-            printf("No se pudo abrir el archivo\n");
-        return 1;
-        }
-        char palabras3[MAX_PALABRAS][MAX_LONGITUD]; 
-        srand(time(NULL));
-        int random3 = rand() % MAX_PALABRAS; 
-
-        int contador3 = 0;
-        // lee el arreglo y lo guarda en un arreglo 
-        while (fgets(palabras3[contador3], sizeof(palabras3[contador3]), archivo3) != NULL) {
-        // Eliminar el salto de línea
-        palabras3[contador3][strcspn(palabras3[contador3], "\n")] = 0;
-        contador3++;
-        if (contador3 >= MAX_PALABRAS) break; // Limitar el número de palabras
-        }
-        printf("%s",palabras3[random3]);
-
-        fclose(archivo3);
         break;
 
     default:
-        printf("Recuerde es  1 facil, 2 medio, 3 dificil.");
+        printf("Recuerde que 1 es países, 2 es marcas, 3 es comidas, 4 es objetos.\n");
         break;
+}
+
+
+    if (archivo != NULL) {
+        eleccionDificultad(archivo, palabras, palabraEnJuego);
+        fclose(archivo);
+    } else {
+        printf("No se pudo abrir el archivo. Verifique la temática y la dificultad.\n");
     }
+    
+    char caracteres[MAX_LONGITUD]; 
+    int tamanio = strlen(palabraEnJuego);
+    
+    for (int i = 0; i < tamanio; i++) {
+        caracteres[i] = palabraEnJuego[i];
+    }
+    
+    
+    caracteres[strlen(palabraEnJuego)] = '\0'; //ver que hace esto bien
 
+    
+    printf("La palabra en juego es: %s\n", palabraEnJuego);
+    //printf("Los caracteres en el arreglo son:\n");
 
+     //printf("La palabra en juego es: %s\n", palabraEnJuego);
+      //for (int i = 0; i < (tamanio-1); i++) {
+        //printf("Caracter %d: %c\n", i, caracteres[i]);
+    //}
+    //Juego en si
+    
     return 0;
  
 }
