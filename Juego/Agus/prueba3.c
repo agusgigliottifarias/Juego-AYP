@@ -128,24 +128,34 @@ int main () {
     }
     
     char caracteres[MAX_LONGITUD]; 
-    int tamanio = strlen(palabraEnJuego);
+    int tamanio = strlen(palabraEnJuego)-1;
     
     for (int i = 0; i < tamanio; i++) {
         caracteres[i] = palabraEnJuego[i];
     }
     
     
-    caracteres[strlen(palabraEnJuego)] = '\0'; //ver que hace esto bien
-
+    //caracteres [strlen(palabraEnJuego)] = '\0'; ver que hace esto bien
+    //printf("%d",tamanio);
     
     printf("La palabra en juego es: %s\n", palabraEnJuego);
-    //printf("Los caracteres en el arreglo son:\n");
+    printf("Los caracteres en el arreglo son:\n");
 
-     //printf("La palabra en juego es: %s\n", palabraEnJuego);
-      //for (int i = 0; i < (tamanio-1); i++) {
-        //printf("Caracter %d: %c\n", i, caracteres[i]);
-    //}
+    printf("La palabra en juego es: %s\n", palabraEnJuego);
+        for (int i = 0; i <= (tamanio-1); i++) {
+        printf("Caracter %d: %c\n", i, caracteres[i]);
+    }
+    
+    
     //Juego en si
+
+
+    for (int i = 0; i <= tamanio; i++){
+        printf("-");
+    }
+    
+    
+    
     
     return 0;
  
