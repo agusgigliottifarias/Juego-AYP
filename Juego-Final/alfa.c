@@ -432,23 +432,23 @@ FILE* abrirArchivo(){
         switch (dificultad) {
             case 1:
                 if (idioma == 1) {
-                    archivo = fopen("tematicas/comidas/español/comidasfacil.txt", "r");
+                    archivo = fopen("tematicas/comidas/español/comidafacil.txt", "r");
                 } else {
-                    archivo = fopen("tematicas/comidas/ingles/comidasfacil.txt", "r");
+                    archivo = fopen("tematicas/comidas/ingles/comidafacil.txt", "r");
                 }
                 break;
             case 2:
                 if (idioma == 1) {
-                    archivo = fopen("tematicas/comidas/español/comidasmedio.txt", "r");
+                    archivo = fopen("tematicas/comidas/español/comidamedio.txt", "r");
                 } else {
-                    archivo = fopen("tematicas/comidas/ingles/comidasmedio.txt", "r");
+                    archivo = fopen("tematicas/comidas/ingles/comidamedio.txt", "r");
                 }
                 break;
             case 3:
                 if (idioma == 1) {
-                    archivo = fopen("tematicas/comidas/español/comidashardcore.txt", "r");
+                    archivo = fopen("tematicas/comidas/español/comidahardcore.txt", "r");
                 } else {
-                    archivo = fopen("tematicas/comidas/ingles/comidasdificil.txt", "r");
+                    archivo = fopen("tematicas/comidas/ingles/comidadificil.txt", "r");
                 }
                 break;
             default:
@@ -549,7 +549,7 @@ void eleccionPalabra(FILE *archivo, char palabras1[MAX_PALABRAS][MAX_LONGITUD], 
 int main () {
     interfaz(); 
     Jugador jugadores[MAX_JUGADORES];
-    int cantidad = 0;
+    int cantidad = 0; // variable cantidad de jugadores
     char *archivoRanking = "ranking.txt";
     leerRanking(archivoRanking, jugadores, &cantidad);
     char name[100];
